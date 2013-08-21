@@ -1,0 +1,13 @@
+apply plugin: 'groovy'
+apply plugin: 'war'
+
+group = 'com.4thsource'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.1.5'
+}
