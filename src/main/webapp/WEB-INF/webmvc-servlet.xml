@@ -7,5 +7,6 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <mvc:resources location="/app/" mapping="/app/**" cache-period="0" />
+    <mvc:resources location="/favicon.ico" mapping="/favicon.ico" />
 
 </beans>
