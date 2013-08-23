@@ -6,8 +6,9 @@ class BillableTime {
 
     Resource resource
     Project project
+    String task
     LocalDate date
-    Short hours
-    Short overtime
+    Short time = 0
+    Short overtime = 0
 
 }

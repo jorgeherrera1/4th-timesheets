@@ -6,6 +6,7 @@ class Resource {
 
     Integer id
     String name
+    String lead
 
     @Override
     boolean equals(Object obj) {
@@ -20,17 +21,18 @@ class Resource {
         Resource that = obj as Resource
 
         Objects.equal(this.id, that.id) &&
-                Objects.equal(this.name, that.name)
+                Objects.equal(this.name, that.name) &&
+                Objects.equal(this.lead, that.lead)
     }
 
     @Override
     int hashCode() {
-        Objects.hashCode(id, name)
+        Objects.hashCode(id, name, lead)
     }
 
     @Override
     String toString() {
-        "Resource {id: $id, name: $name}"
+        "Resource {id: $id, name: $name, lead: $lead}"
     }
 
 }
