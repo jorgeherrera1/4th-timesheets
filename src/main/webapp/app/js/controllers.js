@@ -1,11 +1,5 @@
 'use strict';
 
-/* Controllers */
+timesheetsApp.controller('appCtrl', ['$scope', function($scope) {
 
-angular.module('myApp.controllers', []).
-  controller('MyCtrl1', [function() {
-
-  }])
-  .controller('MyCtrl2', [function() {
-
-  }]);
+}]);
