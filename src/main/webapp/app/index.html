@@ -5,6 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Jorge Herrera">
+    <meta name="description" content="Extremely simplistic application to record time spent on tasks">
 
     <title>4th Timesheets</title>
 
@@ -12,12 +13,48 @@
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-
-<script src="lib/angular/angular.js"></script>
-<script src="js/app.js"></script>
-<script src="js/services.js"></script>
-<script src="js/controllers.js"></script>
-<script src="js/filters.js"></script>
-<script src="js/directives.js"></script>
+    <div class="container">
+        <div class="header">
+            <ul class="nav nav-pills pull-right">
+                <li class="active"><a href="#">Timesheets</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            <h3>4th Timesheets</h3>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-md-offset-1">
+                    <h4>Name</h4>
+                    <p>Bart Simpson</p>
+                </div>
+                <div class="col-md-3 col-md-offset-1">
+                    <h4>Time</h4>
+                    <p>8 hours</p>
+                </div>
+                <div class="col-md-3 col-md-offset-1">
+                    <h4>Overtime</h4>
+                    <p>0 hours</p>
+                </div>
+            </div>
+            <div class="row">
+                <ul class="pager">
+                    <li class="previous"><a href="#">&larr; Previous Week</a></li>
+                    <li><span>Current Week: 8/24/2013</span></li>
+                    <li class="next"><a href="#">Next Week &rarr;</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer">
+            <p>&copy; Jorge Herrera 2013</p>
+        </div>
+    </div>
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/bootstrap/bootstrap.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/directives.js"></script>
 </body>
 </html>
