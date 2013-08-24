@@ -14,13 +14,6 @@ class BillableTimeTest {
     }
 
     @Test
-    void "should return billing resource"() {
-        billableTime.resource = new Resource(name: 'Bart')
-
-        assert billableTime.resource == new Resource(name: 'Bart')
-    }
-
-    @Test
     void "should return billable project"() {
         billableTime.project = new Project(name: '4th-timesheets')
 

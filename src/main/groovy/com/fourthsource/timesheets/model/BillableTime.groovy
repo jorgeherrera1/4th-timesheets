@@ -4,7 +4,6 @@ import org.joda.time.LocalDate
 
 class BillableTime {
 
-    Resource resource
     Project project
     String task
     LocalDate date

@@ -2,10 +2,25 @@ package com.fourthsource.timesheets.model
 
 import com.google.common.base.Objects
 
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+import javax.persistence.Table
+
+@Entity
+@Table(name = 'PROJECTS')
 class Project {
 
+    @Id
+    @Column(name = 'PROJECT_ID')
+    @GeneratedValue
     Integer id
+
+    @Column(name = 'PROJECT_NAME', nullable = false, unique = true, length = 64)
     String name
+
+    @Column(name = 'PROJECT_MANAGER', length = 32)
     String manager
 
     @Override

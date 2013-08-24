@@ -9,4 +9,8 @@
     <mvc:resources location="/app/" mapping="/app/**" cache-period="0" />
     <mvc:resources location="/favicon.ico" mapping="/favicon.ico" />
 
+    <mvc:annotation-driven />
+
+    <context:component-scan base-package="com.fourthsource.timesheets.controller" />
+
 </beans>
