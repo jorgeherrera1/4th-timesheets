@@ -3,6 +3,11 @@ body {
     padding-bottom: 20px;
 }
 
+.form-login {
+    max-width: 380px;
+    margin: 15px auto;
+}
+
 .header {
     margin-bottom: 30px;
     border-bottom: 1px solid #e5e5e5;
