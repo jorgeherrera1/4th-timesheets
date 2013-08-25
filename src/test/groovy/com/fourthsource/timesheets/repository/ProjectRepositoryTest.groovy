@@ -15,6 +15,8 @@ class ProjectRepositoryTest extends TransactionalTest {
         def project = new Project(name: '4th-timesheets', manager: 'Jorge Herrera')
 
         projectRepository.save(project)
+
+        assert project.id != null
     }
 
 }

@@ -2,10 +2,25 @@ package com.fourthsource.timesheets.model
 
 import com.google.common.base.Objects
 
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+import javax.persistence.Table
+
+@Entity
+@Table(name = 'RESOURCES')
 class Resource {
 
+    @Id
+    @Column(name = 'RESOURCE_ID')
+    @GeneratedValue
     Integer id
+
+    @Column(name = 'RESOURCE_NAME', nullable = false, unique = true, length = 32)
     String name
+
+    @Column(name = 'RESOURCE_LEAD', nullable = false, unique = true, length = 32)
     String lead
 
     @Override
