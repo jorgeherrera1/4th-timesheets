@@ -4,8 +4,8 @@ timesheetsApp.controller('appCtrl', ['$scope', function($scope) {
 
 }]);
 
-timesheetsApp.controller('loginCtrl', ['$scope', function($scope) {
+timesheetsApp.controller('loginCtrl', ['$scope', 'loginService', function($scope, loginService) {
     $scope.login = function() {
-        console.log('logging in ' + $scope.username);
+        loginService.login($scope.username, $scope.password);
     };
 }]);

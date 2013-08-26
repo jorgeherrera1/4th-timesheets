@@ -20,7 +20,10 @@ class Resource {
     @Column(name = 'RESOURCE_NAME', nullable = false, unique = true, length = 32)
     String name
 
-    @Column(name = 'RESOURCE_LEAD', nullable = false, unique = true, length = 32)
+    @Column(name = 'RESOURCE_EMAIL', nullable = false, unique = true, length = 64)
+    String email
+
+    @Column(name = 'RESOURCE_LEAD', nullable = true, unique = false, length = 32)
     String lead
 
     @Override
@@ -37,17 +40,18 @@ class Resource {
 
         Objects.equal(this.id, that.id) &&
                 Objects.equal(this.name, that.name) &&
+                Objects.equal(this.email, that.email) &&
                 Objects.equal(this.lead, that.lead)
     }
 
     @Override
     int hashCode() {
-        Objects.hashCode(id, name, lead)
+        Objects.hashCode(id, name, email, lead)
     }
 
     @Override
     String toString() {
-        "Resource {id: $id, name: $name, lead: $lead}"
+        "Resource {id: $id, name: $name, email: $email, lead: $lead}"
     }
 
 }

@@ -27,6 +27,13 @@ class ResourceTest {
     }
 
     @Test
+    void "should return resource email"() {
+        resource.email = 'jorge.herrera@4thsource.com'
+
+        assert resource.email == 'jorge.herrera@4thsource.com'
+    }
+
+    @Test
     void "should return resource lead"() {
         resource.lead = 'God'
 
@@ -49,9 +56,10 @@ class ResourceTest {
     void "equals should be false if resources are different"() {
         resource.id = 1234
         resource.name = 'Jorge Herrera'
+        resource.email = 'jorge.herrera@4thsource.com'
         resource.lead = 'God'
 
-        def otherResource = new Resource(id: 5678, name: 'Bart Simpson', lead: 'Homer Simpson')
+        def otherResource = new Resource(id: 5678, name: 'Bart Simpson', email: 'bart@simpson.com', lead: 'Homer Simpson')
 
         assert resource != otherResource
     }
@@ -60,9 +68,10 @@ class ResourceTest {
     void "equals should be true if resources are identical"() {
         resource.id = 1234
         resource.name = 'Jorge Herrera'
+        resource.email = 'jorge.herrera@4thsource.com'
         resource.lead = 'God'
 
-        def otherResource = new Resource(id: 1234, name: 'Jorge Herrera', lead: 'God')
+        def otherResource = new Resource(id: 1234, name: 'Jorge Herrera', email: 'jorge.herrera@4thsource.com', lead: 'God')
 
         assert resource == otherResource
     }
@@ -71,9 +80,10 @@ class ResourceTest {
     void "hash code should be different for different resources"() {
         resource.id = 1234
         resource.name = 'Jorge Herrera'
+        resource.email = 'jorge.herrera@4thsource.com'
         resource.lead = 'God'
 
-        def otherResource = new Resource(id: 5678, name: 'Bart Simpson', lead: 'Homer Simpson')
+        def otherResource = new Resource(id: 5678, name: 'Bart Simpson', email: 'bart@simpson.com', lead: 'Homer Simpson')
 
         assert resource.hashCode() != otherResource.hashCode()
     }
@@ -82,9 +92,10 @@ class ResourceTest {
     void "hash code should be equal for identical resources"() {
         resource.id = 1234
         resource.name = 'Jorge Herrera'
+        resource.email = 'jorge.herrera@4thsource.com'
         resource.lead = 'God'
 
-        def otherResource = new Resource(id: 1234, name: 'Jorge Herrera', lead: 'God')
+        def otherResource = new Resource(id: 1234, name: 'Jorge Herrera', email: 'jorge.herrera@4thsource.com', lead: 'God')
 
         assert resource.hashCode() == otherResource.hashCode()
     }

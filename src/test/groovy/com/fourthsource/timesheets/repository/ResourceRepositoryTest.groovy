@@ -20,4 +20,13 @@ class ResourceRepositoryTest extends TransactionalTest {
         assert resource == resourceRepository.findOne(resource.id)
     }
 
+    @Test
+    void "should find resource by email"() {
+        resourceRepository.save(new Resource(name: 'Jorge Herrera', email: 'jorge.herrera@4thsource.com'))
+
+        def resource = resourceRepository.findByEmail('jorge.herrera@4thsource.com')
+
+        assert resource.name == 'Jorge Herrera'
+    }
+
 }

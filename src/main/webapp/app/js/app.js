@@ -6,6 +6,12 @@ var timesheetsApp = angular.module('timesheets', [])
             templateUrl: 'partials/login.html',
             controller: 'loginCtrl'
         });
+
+        $routeProvider.when('/timesheet', {
+            templateUrl: 'partials/timesheet.html',
+            controller: 'timesheetCtrl'
+        });
+
         $routeProvider.otherwise({
             templateUrl: 'partials/timesheet.html'
         });
