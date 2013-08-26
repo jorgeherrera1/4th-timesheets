@@ -14,9 +14,10 @@ class ResourceRepositoryTest extends TransactionalTest {
     void "should save resource"() {
         def resource = new Resource(name: 'Smithers', lead: 'Mr. Burns')
 
-        resourceRepository.save(resource)
+        resource = resourceRepository.save(resource)
 
         assert resource.id != null
+        assert resource == resourceRepository.findOne(resource.id)
     }
 
 }

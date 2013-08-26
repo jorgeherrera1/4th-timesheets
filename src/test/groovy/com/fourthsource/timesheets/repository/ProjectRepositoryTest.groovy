@@ -14,9 +14,10 @@ class ProjectRepositoryTest extends TransactionalTest {
     void "should save project"() {
         def project = new Project(name: '4th-timesheets', manager: 'Jorge Herrera')
 
-        projectRepository.save(project)
+        project = projectRepository.save(project)
 
         assert project.id != null
+        assert project == projectRepository.findOne(project.id)
     }
 
 }
