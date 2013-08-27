@@ -2,7 +2,7 @@
 
 timesheetsApp.factory('loginService', ['$http', function($http) {
     return {
-        login: function(username, password) {
+        login: function(username, password, successCallback) {
             $http({
                 method: 'POST',
                 url: '/resource/login',
@@ -13,11 +13,7 @@ timesheetsApp.factory('loginService', ['$http', function($http) {
                     'username': username,
                     'password': password
                 })
-            }).success(function(data, status, headers, config) {
-                $rootScope.resource = data;
-                $http.defaults.headers.common['Auth-Token'] = data.token;
-                $location.path("/timesheet");
-            }).error(function(data, status, headers, config) {
+            }).success(successCallback).error(function(data, status, headers, config) {
                 console.log('error');
             });
         }

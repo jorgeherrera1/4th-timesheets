@@ -1,7 +1,7 @@
 package com.fourthsource.timesheets.controller
 
 import com.fourthsource.timesheets.dto.ResourceDTO
-import com.fourthsource.timesheets.model.Resource
+import com.fourthsource.timesheets.security.AuthenticationUtils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -28,16 +28,18 @@ class ResourceController {
     AuthenticationManager authenticationManager
 
     @RequestMapping(value = '/login', method = RequestMethod.POST)
-    @ResponseBody Resource login(@RequestParam('username') String username, @RequestParam('password') String password) {
+    @ResponseBody ResourceDTO login(@RequestParam('username') String username, @RequestParam('password') String password) {
         logger.info("User $username is logging in...")
 
         def authenticationToken = new UsernamePasswordAuthenticationToken(username, password)
         def authentication = authenticationManager.authenticate(authenticationToken)
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        def userDetails = userDetailsService.loadUserByUsername(username)
+        def resourceDTO = new ResourceDTO(name: 'Jorge Herrera', email: 'jorge.herrera@4thsource.com')
+        resourceDTO.token = AuthenticationUtils.newTokenForUser(userDetails)
 
-
-        new ResourceDTO(name: 'Jorge Herrera', email: 'jorge@mail.com', token: 'abc123')
+        resourceDTO
     }
 
 }
