@@ -20,7 +20,7 @@
     <authentication-manager id="authenticationManager">
         <authentication-provider>
             <user-service id="userDetailsService">
-                <user name="jorge.herrera@4thsource.com" password="jorge.herrera@4thsource.com" authorities="developer" />
+                <user name="jherrera" password="jherrera" authorities="developer" />
             </user-service>
         </authentication-provider>
     </authentication-manager>

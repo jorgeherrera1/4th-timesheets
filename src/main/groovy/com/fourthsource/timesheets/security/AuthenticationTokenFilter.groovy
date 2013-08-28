@@ -24,16 +24,18 @@ class AuthenticationTokenFilter extends GenericFilterBean {
     void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         def httpRequest = request as HttpServletRequest
         def authenticationToken = httpRequest.getHeader('Auth-Token')
-        def username = AuthenticationUtils.getUsernameFromToken(authenticationToken)
 
-        Preconditions.checkNotNull(username)
+        if (authenticationToken != null) {
+            def username = AuthenticationUtils.getUsernameFromToken(authenticationToken)
+            Preconditions.checkNotNull(username)
 
-        def userDetails = userDetailsService.loadUserByUsername(username)
+            def userDetails = userDetailsService.loadUserByUsername(username)
 
-        if (AuthenticationUtils.isValidToken(authenticationToken, userDetails)) {
-            def authentication = new UsernamePasswordAuthenticationToken(userDetails.username, userDetails.password)
-            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpRequest))
-            SecurityContextHolder.getContext().setAuthentication(authenticationManager.authenticate(authentication))
+            if (AuthenticationUtils.isValidToken(authenticationToken, userDetails)) {
+                def authentication = new UsernamePasswordAuthenticationToken(userDetails.username, userDetails.password)
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpRequest))
+                SecurityContextHolder.getContext().setAuthentication(authenticationManager.authenticate(authentication))
+            }
         }
 
         chain.doFilter(request, response)
