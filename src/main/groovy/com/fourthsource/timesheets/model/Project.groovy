@@ -20,7 +20,7 @@ class Project {
     @Column(name = 'PROJECT_NAME', nullable = false, unique = true, length = 64)
     String name
 
-    @Column(name = 'PROJECT_MANAGER', length = 32)
+    @Column(name = 'MANAGER_NAME', length = 32)
     String manager
 
     @Override

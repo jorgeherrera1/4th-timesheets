@@ -17,7 +17,7 @@ class Resource {
     @GeneratedValue
     Integer id
 
-    @Column(name = 'RESOURCE_NAME', nullable = false, unique = true, length = 32)
+    @Column(name = 'RESOURCE_NAME', nullable = false, unique = false, length = 32)
     String name
 
     @Column(name = 'RESOURCE_EMAIL', nullable = false, unique = true, length = 64)
