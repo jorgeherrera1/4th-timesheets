@@ -6,22 +6,25 @@ import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
 import javax.persistence.Table
 
 @Entity
-@Table(name = 'projects')
-class Project {
+@Table(name = 'tasks')
+class Task {
 
     @Id
-    @Column(name = 'project_id')
+    @Column(name = 'task_id')
     @GeneratedValue
     Integer id
 
     @Column(name = 'name', nullable = false, unique = true, length = 64)
     String name
 
-    @Column(name = 'manager_name', length = 32)
-    String manager
+    @ManyToOne
+    @JoinColumn(name = 'project_id')
+    Project project
 
     @Override
     boolean equals(Object obj) {
@@ -29,24 +32,24 @@ class Project {
             return true
         }
 
-        if (!(obj instanceof Project)) {
+        if (!(obj instanceof Task)) {
             return false
         }
 
-        Project that = obj as Project
+        Task that = obj as Task
 
         Objects.equal(this.id, that.id) &&
-                Objects.equal(this.name, that.name) &&
-                Objects.equal(this.manager, that.manager)
+                Objects.equal(this.name, that.name)
     }
 
     @Override
     int hashCode() {
-        Objects.hashCode(id, name, manager)
+        Objects.hashCode(id, name)
     }
 
     @Override
     String toString() {
-        "Project {id: $id, name: $name, manager: $manager}"
+        "Task {id: $id, name: $name, project: $project.name}"
     }
+
 }

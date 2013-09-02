@@ -6,28 +6,29 @@ import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+import javax.persistence.OneToMany
 import javax.persistence.Table
 import javax.persistence.Temporal
 import javax.persistence.TemporalType
 
 @Entity
-@Table(name = 'TIMESHEETS')
+@Table(name = 'timesheets')
 class Timesheet {
 
     @Id
-    @Column(name = 'TIMESHEET_ID')
+    @Column(name = 'timesheet_id')
     @GeneratedValue
     Integer id
 
-    @Column(name = 'WEEK_ENDING', nullable = false)
+    @Column(name = 'week_ending', nullable = false)
     @Temporal(TemporalType.DATE)
     Calendar weekEnding
 
     @ManyToOne
-    @JoinColumn(name = 'RESOURCE_ID', nullable = false)
+    @JoinColumn(name = 'resource_id', nullable = false)
     Resource resource
 
-
+    @OneToMany(mappedBy = 'timesheet')
     List<BillableTime> billableTimes
 
 }

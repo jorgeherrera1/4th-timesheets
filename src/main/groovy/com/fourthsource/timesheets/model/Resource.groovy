@@ -9,21 +9,21 @@ import javax.persistence.Id
 import javax.persistence.Table
 
 @Entity
-@Table(name = 'RESOURCES')
+@Table(name = 'resources')
 class Resource {
 
     @Id
-    @Column(name = 'RESOURCE_ID')
+    @Column(name = 'resource_id')
     @GeneratedValue
     Integer id
 
-    @Column(name = 'RESOURCE_NAME', nullable = false, unique = false, length = 32)
+    @Column(name = 'name', nullable = false, length = 32)
     String name
 
-    @Column(name = 'RESOURCE_EMAIL', nullable = false, unique = true, length = 64)
+    @Column(name = 'email', nullable = false, unique = true, length = 64)
     String email
 
-    @Column(name = 'RESOURCE_LEAD', nullable = true, unique = false, length = 32)
+    @Column(name = 'lead_name', length = 32)
     String lead
 
     @Override
