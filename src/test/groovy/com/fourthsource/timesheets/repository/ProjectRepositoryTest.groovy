@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired
 
 class ProjectRepositoryTest extends TransactionalTest {
 
-    @Autowired
-    ProjectRepository projectRepository
-
     @Test
     void "should save project"() {
         def project = new Project(name: '4th-timesheets', manager: 'Jorge Herrera')

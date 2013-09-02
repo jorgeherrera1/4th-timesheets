@@ -1,6 +1,16 @@
 package com.fourthsource.timesheets.test
 
+import com.fourthsource.timesheets.repository.BillableTimeRepository
+import com.fourthsource.timesheets.repository.ProjectRepository
+import com.fourthsource.timesheets.repository.ResourceRepository
+import com.fourthsource.timesheets.repository.TaskRepository
+import com.fourthsource.timesheets.repository.TimesheetRepository
+import org.junit.BeforeClass
 import org.junit.runner.RunWith
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.core.io.support.PropertiesLoaderUtils
+import org.springframework.jdbc.datasource.DriverManagerDataSource
+import org.springframework.mock.jndi.SimpleNamingContextBuilder
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
@@ -8,11 +18,43 @@ import org.springframework.test.context.transaction.TransactionConfiguration
 import org.springframework.transaction.annotation.Transactional
 
 @RunWith(SpringJUnit4ClassRunner)
-@ContextConfiguration(locations = ['classpath:persistence-context.xml', 'classpath:persistence-test-context.xml'])
+@ContextConfiguration(locations = ['classpath:persistence-context.xml'])
 @TransactionConfiguration
 @Transactional
 class TransactionalTest extends AbstractTransactionalJUnit4SpringContextTests {
 
+    @Autowired
+    ResourceRepository resourceRepository
 
+    @Autowired
+    ProjectRepository projectRepository
+
+    @Autowired
+    TaskRepository taskRepository
+
+    @Autowired
+    TimesheetRepository timesheetRepository
+
+    @Autowired
+    BillableTimeRepository billableTimeRepository
+
+    @BeforeClass
+    static void "set up jndi test data source"() {
+        def databaseProperties = PropertiesLoaderUtils.loadAllProperties('database.properties')
+        def driverClassName = databaseProperties.getProperty('database.driverClassName')
+        def url = databaseProperties.getProperty('database.url')
+        def username = databaseProperties.getProperty('database.username')
+        def password = databaseProperties.getProperty('database.password')
+
+        def testDataSource = new DriverManagerDataSource()
+        testDataSource.driverClassName = driverClassName
+        testDataSource.url = url
+        testDataSource.username = username
+        testDataSource.password = password
+
+        def jndiContextBuilder = new SimpleNamingContextBuilder()
+        jndiContextBuilder.bind('java:comp/env/jdbc/jherrera', testDataSource)
+        jndiContextBuilder.activate()
+    }
 
 }

@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired
 
 class ResourceRepositoryTest extends TransactionalTest {
 
-    @Autowired
-    ResourceRepository resourceRepository
-
     @Test
     void "should save resource"() {
         def resource = new Resource(name: 'Smithers', lead: 'Mr. Burns')

@@ -3,6 +3,5 @@ create table timesheets (
   week_ending  date    not null,
   resource_id  integer not null,
 
-  primary key (timesheet_id),
-  foreign key (resource_id) references resources (resource_id) on delete restrict
+  primary key (timesheet_id)
 );
