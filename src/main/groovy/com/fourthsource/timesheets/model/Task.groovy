@@ -39,12 +39,13 @@ class Task {
         Task that = obj as Task
 
         Objects.equal(this.id, that.id) &&
-                Objects.equal(this.name, that.name)
+                Objects.equal(this.name, that.name) &&
+                Objects.equal(this.project?.id, that.project?.id)
     }
 
     @Override
     int hashCode() {
-        Objects.hashCode(id, name)
+        Objects.hashCode(id, name, project?.id)
     }
 
     @Override
