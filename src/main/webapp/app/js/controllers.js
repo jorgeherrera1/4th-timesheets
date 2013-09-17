@@ -19,7 +19,29 @@ function($scope, $rootScope, $http, $location, loginService) {
     };
 }]);
 
-timesheetsApp.controller('timesheetCtrl', ['$scope',
-function($scope) {
+timesheetsApp.controller('timesheetCtrl', ['$scope', 'timesheet',
+function($scope, timesheet) {
+    $scope.weekEnding = Date.parseExact(timesheet.weekEnding, 'M/d/yyyy');
+    $scope.totalTime = timesheet.totalTime;
+    $scope.totalOvertime = timesheet.totalOvertime;
 
+    $scope.previousWeekUrl = function() {
+        var previousWeekEnding = Date.parseExact(timesheet.weekEnding, 'M/d/yyyy').last().saturday(),
+            url = '#/timesheet' +
+                '/' + previousWeekEnding.toString('yyyy') +
+                '/' + previousWeekEnding.toString('M') +
+                '/' + previousWeekEnding.toString('d');
+
+        return url;
+    };
+
+    $scope.nextWeekUrl = function() {
+        var nextWeekEnding = Date.parseExact(timesheet.weekEnding, 'M/d/yyyy').next().saturday(),
+            url = '#/timesheet' +
+                '/' + nextWeekEnding.toString('yyyy') +
+                '/' + nextWeekEnding.toString('M') +
+                '/' + nextWeekEnding.toString('d');
+
+        return url;
+    };
 }]);
