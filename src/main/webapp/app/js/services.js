@@ -23,14 +23,9 @@ timesheetsApp.factory('loginService', ['$http', function($http) {
 timesheetsApp.factory('timesheetService', ['$http',
 function($http) {
     return {
-        timesheetForWeekEnding: function(weekEnding, successCallback) {
-            var timesheet = {
-                weekEnding: '9/21/2013',
-                totalTime: 1,
-                totalOvertime: 0
-            };
-
-            successCallback(timesheet);
+        timesheetForWeekEnding: function(year, month, day, successCallback) {
+            $http.get('/timesheet/' + year + '/' + month + '/' + day)
+                .success(successCallback);
         }
     };
 }]);
@@ -40,8 +35,7 @@ function($route, $q, timesheetService) {
     return function() {
         var year = $route.current.params.year,
             month = $route.current.params.month,
-            day = $route.current.params.day,
-            weekEnding = new Date(year, month, day);
+            day = $route.current.params.day;
 
         var delay = $q.defer();
 
@@ -49,7 +43,7 @@ function($route, $q, timesheetService) {
             delay.resolve(timesheet);
         };
 
-        timesheetService.timesheetForWeekEnding(weekEnding, successCallback);
+        timesheetService.timesheetForWeekEnding(year, month, day, successCallback);
 
         return delay.promise;
     };

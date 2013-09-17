@@ -3,6 +3,9 @@
 var timesheetsApp = angular.module('timesheets', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
+            .when('/', {
+                redirectTo: '/timesheet'
+            })
             .when('/login', {
                 templateUrl: 'partials/login.html'
             })

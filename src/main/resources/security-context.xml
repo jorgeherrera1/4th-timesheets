@@ -11,7 +11,7 @@
           authentication-manager-ref="authenticationManager">
         <custom-filter ref="authenticationTokenFilter" position="FORM_LOGIN_FILTER" />
         <intercept-url pattern="/resource/login" access="permitAll" />
-        <intercept-url pattern="/timesheet/**" method="GET" access="isAuthenticated()" />
+        <intercept-url pattern="/timesheet/**" method="GET" access="permitAll" />
         <intercept-url pattern="/timesheet/**" method="POST" access="isAuthenticated()" />
         <intercept-url pattern="/timesheet/**" method="PUT" access="isAuthenticated()" />
         <intercept-url pattern="/timesheet/**" method="DELETE" access="isAuthenticated()" />
