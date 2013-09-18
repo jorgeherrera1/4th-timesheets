@@ -1,6 +1,8 @@
 package com.fourthsource.timesheets.model
 
 import com.google.common.base.Objects
+import org.hibernate.annotations.Type
+import org.joda.time.LocalDate
 
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -10,8 +12,6 @@ import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 import javax.persistence.Table
-import javax.persistence.Temporal
-import javax.persistence.TemporalType
 import javax.persistence.UniqueConstraint
 
 @Entity
@@ -25,8 +25,8 @@ class Timesheet {
     Integer id
 
     @Column(name = 'week_ending', nullable = false)
-    @Temporal(TemporalType.DATE)
-    Calendar weekEnding
+    @Type(type='org.joda.time.contrib.hibernate.PersistentLocalDate')
+    LocalDate weekEnding
 
     @ManyToOne
     @JoinColumn(name = 'resource_id', nullable = false)

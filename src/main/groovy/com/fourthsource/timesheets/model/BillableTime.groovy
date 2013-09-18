@@ -1,6 +1,8 @@
 package com.fourthsource.timesheets.model
 
 import com.google.common.base.Objects
+import org.hibernate.annotations.Type
+import org.joda.time.LocalDate
 
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -10,8 +12,6 @@ import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 import javax.persistence.OneToOne
 import javax.persistence.Table
-import javax.persistence.Temporal
-import javax.persistence.TemporalType
 
 @Entity
 @Table(name = 'billable_time')
@@ -27,8 +27,8 @@ class BillableTime {
     Task task
 
     @Column(name = 'date', nullable = false)
-    @Temporal(TemporalType.DATE)
-    Calendar date
+    @Type(type='org.joda.time.contrib.hibernate.PersistentLocalDate')
+    LocalDate date
 
     @Column(name = 'time')
     Short time = 0
