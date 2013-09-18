@@ -3,5 +3,6 @@ create table timesheets (
   week_ending  date    not null,
   resource_id  integer not null,
 
-  primary key (timesheet_id)
+  primary key (timesheet_id),
+  foreign key (resource_id) references resources (resource_id)
 );

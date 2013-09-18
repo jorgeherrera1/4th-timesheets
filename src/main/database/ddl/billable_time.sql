@@ -6,5 +6,7 @@ create table billable_time (
   overtime         smallint,
   timesheet_id     integer,
 
-  primary key (billable_time_id)
+  primary key (billable_time_id),
+  foreign key (task_id) references tasks (task_id),
+  foreign key (timesheet_id) references timesheets (timesheet_id)
 );
