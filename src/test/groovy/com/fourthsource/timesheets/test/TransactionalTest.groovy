@@ -7,8 +7,6 @@ import com.fourthsource.timesheets.repository.TaskRepository
 import com.fourthsource.timesheets.repository.TimesheetRepository
 import org.junit.BeforeClass
 import org.junit.runner.RunWith
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.core.io.support.PropertiesLoaderUtils
 import org.springframework.jdbc.datasource.DriverManagerDataSource
@@ -24,8 +22,6 @@ import org.springframework.transaction.annotation.Transactional
 @TransactionConfiguration
 @Transactional
 class TransactionalTest extends AbstractTransactionalJUnit4SpringContextTests {
-
-    static final Logger logger = LoggerFactory.getLogger(getClass())
 
     @Autowired
     ResourceRepository resourceRepository
@@ -44,8 +40,6 @@ class TransactionalTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @BeforeClass
     static void "set up jndi test data source"() {
-        logger.info('Setting up JNDI data source for testing...')
-
         def databaseProperties = PropertiesLoaderUtils.loadAllProperties('database.properties')
 
         def testDataSource = new DriverManagerDataSource()
