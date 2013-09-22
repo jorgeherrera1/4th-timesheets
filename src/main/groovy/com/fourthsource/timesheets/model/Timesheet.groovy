@@ -25,7 +25,7 @@ class Timesheet {
     Integer id
 
     @Column(name = 'week_ending', nullable = false)
-    @Type(type='org.joda.time.contrib.hibernate.PersistentLocalDate')
+    @Type(type='org.jadira.usertype.dateandtime.joda.PersistentLocalDate')
     LocalDate weekEnding
 
     @ManyToOne

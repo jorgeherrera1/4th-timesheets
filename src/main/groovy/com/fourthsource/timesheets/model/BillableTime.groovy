@@ -27,7 +27,7 @@ class BillableTime {
     Task task
 
     @Column(name = 'date', nullable = false)
-    @Type(type='org.joda.time.contrib.hibernate.PersistentLocalDate')
+    @Type(type='org.jadira.usertype.dateandtime.joda.PersistentLocalDate')
     LocalDate date
 
     @Column(name = 'time')
