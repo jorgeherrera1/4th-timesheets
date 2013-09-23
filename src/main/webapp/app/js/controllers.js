@@ -25,22 +25,37 @@ function($scope, timesheet) {
     $scope.totalTime = timesheet.totalTime;
     $scope.totalOvertime = timesheet.totalOvertime;
 
+    var toUrl = function(weekEnding) {
+        var url = '#/timesheet' +
+            '/' + weekEnding.toString('yyyy') +
+            '/' + weekEnding.toString('M') +
+            '/' + weekEnding.toString('d');
+
+        return url;
+    };
+
+    $scope.previousWeek = function() {
+        var previousWeek = Date.parseExact(timesheet.weekEnding, 'M/d/yyyy').last().saturday();
+
+        return previousWeek;
+    };
+
+    $scope.nextWeek = function() {
+        var nextWeek = Date.parseExact(timesheet.weekEnding, 'M/d/yyyy').next().saturday();
+
+        return nextWeek;
+    };
+
     $scope.previousWeekUrl = function() {
-        var previousWeekEnding = Date.parseExact(timesheet.weekEnding, 'M/d/yyyy').last().saturday(),
-            url = '#/timesheet' +
-                '/' + previousWeekEnding.toString('yyyy') +
-                '/' + previousWeekEnding.toString('M') +
-                '/' + previousWeekEnding.toString('d');
+        var previousWeekEnding = $scope.previousWeek(),
+            url = toUrl(previousWeekEnding);
 
         return url;
     };
 
     $scope.nextWeekUrl = function() {
-        var nextWeekEnding = Date.parseExact(timesheet.weekEnding, 'M/d/yyyy').next().saturday(),
-            url = '#/timesheet' +
-                '/' + nextWeekEnding.toString('yyyy') +
-                '/' + nextWeekEnding.toString('M') +
-                '/' + nextWeekEnding.toString('d');
+        var nextWeekEnding = $scope.nextWeek(),
+            url = toUrl(nextWeekEnding);
 
         return url;
     };

@@ -24,14 +24,17 @@
     <div class="row">
         <ul class="pager">
             <li class="previous">
-                <a ng-href="{{previousWeekUrl()}}">&larr; Previous Week</a>
+                <a ng-href="{{previousWeekUrl()}}" tooltip="{{previousWeek() | date:'longDate'}}">&larr; Previous Week</a>
             </li>
             <li>
                 <span>Current Week: {{weekEnding | date:'M/d/yyyy'}}</span>
             </li>
             <li class="next">
-                <a ng-href="{{nextWeekUrl()}}">Next Week &rarr;</a>
+                <a ng-href="{{nextWeekUrl()}}" tooltip="{{nextWeek() | date:'longDate'}}">Next Week &rarr;</a>
             </li>
         </ul>
+    </div>
+    <div class="row">
+        <weekly-timesheet></weekly-timesheet>
     </div>
 </div>
