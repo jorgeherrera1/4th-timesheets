@@ -37,4 +37,9 @@ var timesheetsApp = angular.module('timesheets', [])
             .otherwise({
                 templateUrl: 'partials/timesheet.html'
             });
+    }])
+    .run(['$http', '$templateCache', function($http, $templateCache) {
+        $http.get('partials/add-time.html').success(function(addTimeHtml) {
+            $templateCache.put('partials/add-time.html', addTimeHtml);
+        });
     }]);

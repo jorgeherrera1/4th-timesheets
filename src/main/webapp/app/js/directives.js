@@ -1,22 +1,25 @@
 'use strict';
 
-timesheetsApp.directive('tooltip', function() {
+timesheetsApp.directive('addTime', ['$templateCache', function($templateCache) {
     return {
         restrict: 'A',
-        scope: true,
+        scope: {},
         link: function(scope, elem, attrs) {
-            elem.attr('title', scope.$eval(attrs.tooltip));
-            elem.tooltip();
+            elem.popover({
+                html: true,
+                placement: 'bottom',
+                content: $templateCache.get('partials/add-time.html')
+            });
         }
     };
-});
+}]);
 
 timesheetsApp.directive('weeklyTimesheet', function() {
     return {
         restrict: 'E',
         scope: true,
         templateUrl: 'partials/weekly-timesheet.html',
-        link: function(scope, elems, attrs) {
+        link: function(scope, elem, attrs) {
 
         }
     };

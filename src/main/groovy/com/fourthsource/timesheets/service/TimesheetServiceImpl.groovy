@@ -10,6 +10,4 @@ class TimesheetServiceImpl implements TimesheetService {
     @Autowired
     TimesheetRepository timesheetRepository
 
-
-
 }
