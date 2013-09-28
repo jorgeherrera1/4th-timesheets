@@ -31,8 +31,8 @@
 
     <beans:bean id="authenticationTokenFilter"
                 class="com.fourthsource.timesheets.security.AuthenticationTokenFilter">
-        <beans:property name="authenticationManager" ref="authenticationManager" />
-        <beans:property name="userDetailsService" ref="userDetailsService" />
+        <!--<beans:property name="authenticationManager" ref="authenticationManager" />-->
+        <!--<beans:property name="userDetailsService" ref="userDetailsService" />-->
     </beans:bean>
 
 </beans:beans>

@@ -1,11 +1,6 @@
 package com.fourthsource.timesheets.security
 
-import com.google.common.base.Preconditions
-import org.springframework.security.authentication.AuthenticationManager
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.core.userdetails.UserDetailsService
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource
+import com.fourthsource.timesheets.dto.ResourceDTO
 import org.springframework.web.filter.GenericFilterBean
 
 import javax.servlet.FilterChain
@@ -16,27 +11,15 @@ import javax.servlet.http.HttpServletRequest
 
 class AuthenticationTokenFilter extends GenericFilterBean {
 
-    AuthenticationManager authenticationManager
-
-    UserDetailsService userDetailsService
-
     @Override
     void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         def httpRequest = request as HttpServletRequest
-        def authenticationToken = httpRequest.getHeader('Auth-Token')
 
-        if (authenticationToken != null) {
-            def username = AuthenticationUtils.getUsernameFromToken(authenticationToken)
-            Preconditions.checkNotNull(username)
+        def resource = new ResourceDTO()
+        resource.name = 'Jorge Herrera'
+        resource.email = 'jorge.herrera@4thsource.com'
 
-            def userDetails = userDetailsService.loadUserByUsername(username)
-
-            if (AuthenticationUtils.isValidToken(authenticationToken, userDetails)) {
-                def authentication = new UsernamePasswordAuthenticationToken(userDetails.username, userDetails.password)
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpRequest))
-                SecurityContextHolder.getContext().setAuthentication(authenticationManager.authenticate(authentication))
-            }
-        }
+        httpRequest.setAttribute('resource', resource)
 
         chain.doFilter(request, response)
     }

@@ -2,9 +2,12 @@ package com.fourthsource.timesheets.dto
 
 class TimesheetDTO {
 
-    Integer id
     String weekEnding
     Short totalTime
     Short totalOvertime
 
+    @Override
+    String toString() {
+        "TimesheetDTO {weekEnding: ${weekEnding}, totalTime: ${totalTime}, totalOvertime: ${totalOvertime}}"
+    }
 }
